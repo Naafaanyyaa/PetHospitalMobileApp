@@ -1,0 +1,33 @@
+@page "/edit-profile"
+@inherits PetHospitalMobileApp.Components.Common.BaseComponent
+<div class="container">
+    <div class="row">
+        <div class="col-12 mb-3">
+            <div class="card">
+                <div class="card-header">@Translate["profile.personal.header"]</div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="userNameInput">User Name</label>
+                        <input id="userNameInput" class="form-control" @bind="@_profileModel.UserName" />
+                    </div>
+                    <div class="form-group">
+                        <label for="emailInput">Email</label>
+                        <input id="emailInput" class="form-control" @bind="@_profileModel.Email" />
+                    </div>
+                    <div class="form-group">
+                        <label for="firstNameInput">First Name</label>
+                        <input id="firstNameInput" class="form-control" @bind="@_profileModel.FirstName" />
+                    </div>
+                    <div class="form-group">
+                        <label for="lastNameInput">Last Name</label>
+                        <input id="lastNameInput" class="form-control" @bind="@_profileModel.LastName" />
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button class="btn btn-primary" @onclick="UpdateProfile">Submit</button>
+                    <a href="/profile" class="btn btn-secondary">Cancel</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

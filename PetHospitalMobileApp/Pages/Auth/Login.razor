@@ -1,0 +1,26 @@
+﻿@page "/login"
+@inherits PetHospitalMobileApp.Components.Common.BaseComponent
+
+<div class="container p-3">
+    <EditForm Model="LoginModel" OnValidSubmit="OnSubmitAsync">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+        <h1>
+            @Translate["Login"]
+        </h1>
+        <MessagesView Messages="Messages" Errors="Errors"></MessagesView>
+        <div class="form-group mb-2">
+            <label for="email" class="h5">
+                @Translate["Email"]
+            </label>
+            <input class="form-control col-6" name="email" type="text" @bind-value="LoginModel.userName" required />
+        </div>
+        <div class="form-group mb-2">
+            <label for="password" class="h5">
+                @Translate["Password"]
+            </label>
+            <input class="form-control col-4" name="password" type="password" @bind-value="LoginModel.password" required />
+        </div>
+        <button class="btn btn-primary mt-2" type="submit">@Translate["Login"]</button>
+    </EditForm>
+</div>

@@ -1,0 +1,34 @@
+@page "/animal-list"
+@inherits PetHospitalMobileApp.Components.Common.BaseComponent
+
+<div class="container">
+    <div class="row">
+        <h2 class="col-12">
+            <h3>@Translate["AnimalList"]</h3>
+        </h2>
+    </div>
+    @if (Animals.Count > 0)
+    {
+        <div class="row">
+            @foreach (var animal in Animals)
+            {
+                <div class="col-12 mb-3">
+                    <div class="card">
+                        <div class="card-header">@Translate["AnimalName"]: @animal.AnimalName</div>
+                        <div class="card-body">
+                            @if (@animal.Photos.Count > 0)
+                            {
+                                <img width="50" height="50" src="@animal.Photos[0]?.PhotoPath">
+                            }
+                            <div>@Translate["AnimalDescription"]: @animal.AnimalDescription</div>
+                        </div>
+                        <div class="card-footer">
+                            <a href="/view-animal/@animal.Id" class="btn btn-primary">@Translate["ViewHospitalRecords"]</a>
+                            <a href="/update-animal/@animal.Id" class="btn btn-primary">@Translate["UpdatePet"]</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</div>

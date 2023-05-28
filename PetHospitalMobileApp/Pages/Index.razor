@@ -1,0 +1,15 @@
+﻿@page "/"
+@using PetHospitalMobileApp.Services
+@inherits PetHospitalMobileApp.Components.Common.BaseComponent
+
+<h1>
+    @Translate["welcome"],
+    @if (UserService.IsAuthenticated)
+    {
+        @CurrentUser.UserName
+    }
+    else
+    {
+        @Translate["guest"]
+    }
+</h1>
