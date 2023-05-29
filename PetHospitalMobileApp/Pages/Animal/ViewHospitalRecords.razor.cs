@@ -2,34 +2,37 @@
 using CommunityToolkit.Maui.Core;
 using Microsoft.AspNetCore.Components;
 using PetHospital.Business.Models.Request;
+using PetHospital.Business.Models.Response;
+using PetHospitalMobileApp.Components.Common;
 using PetHospitalMobileApp.Services;
 
 namespace PetHospitalMobileApp.Pages.Animal;
-
-public partial class EditAnimal
+public partial class ViewHospitalRecords : BaseComponent
 {
-
     [Parameter] public string AnimalId { get; set; }
     [Inject] private AnimalService AnimalService { get; set; }
     private AnimalUpdateRequest _animalUpdateRequest = new AnimalUpdateRequest();
 
+    public List<DiseaseResponse> Diseases { get; set; } = new();
 
-    public async Task OnAnimalUpdate()
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadDiseaseList(AnimalId);
+        await base.OnInitializedAsync();
+    }
+
+    private async Task LoadDiseaseList(string animalId)
     {
         try
         {
-            await AnimalService.UpdateAnimal(AnimalId, _animalUpdateRequest);
-            await Toast.Make("Animal has been edited", ToastDuration.Long, 30).Show();
-            NavigationManager.NavigateTo("/animal-list", true);
+            Diseases = await AnimalService.GetDiseaseList(animalId);
         }
         catch (Exception ex)
         {
             AddError(ex);
             await Toast.Make("Some error", ToastDuration.Long, 30).Show();
-
         }
     }
+
 }
-
-
 

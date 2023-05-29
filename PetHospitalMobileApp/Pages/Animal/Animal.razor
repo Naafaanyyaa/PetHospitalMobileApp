@@ -6,6 +6,7 @@
         <h2 class="col-12">
             <h3>@Translate["AnimalList"]</h3>
         </h2>
+        <a href="/animal-add" class="btn btn-primary">@Translate["AddPet"]</a>
     </div>
     @if (Animals.Count > 0)
     {
@@ -29,6 +30,12 @@
                     </div>
                 </div>
             }
+        </div>
+    }
+    else
+    {
+        <div class="row">
+            <h2>Empty</h2>
         </div>
     }
 </div>

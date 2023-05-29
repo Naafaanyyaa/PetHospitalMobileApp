@@ -30,18 +30,19 @@
                     <span class="oi oi-list-rich" aria-hidden="true"></span> @Translate["Login"]
                 </NavLink>
             </div>
+            <div class="nav-item px-3">
+                <NavLink class="nav-link" href="registration">
+                    <span class="oi oi-list-rich" aria-hidden="true"></span> @Translate["Registration"]
+                </NavLink>
+            </div>
         }
-        
+        <div class="nav-item px-3 row">
+            @foreach (var language in Translate.AvailableLanguages) {
+                <a class="nav-link col-6 @(Translate.CurrentLanguage == language ? "active" : string.Empty)" @onclick="(() => ChangeLanguage(language))">
+                    <span class="oi oi-list-rich" aria-hidden="true"></span> @Translate[language.ToUpper()]
+                </a>
+            }
+        </div>
+
     </nav>
 </div>
-
-@code {
-    private bool collapseNavMenu = true;
-
-    private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
-
-    private void ToggleNavMenu()
-    {
-        collapseNavMenu = !collapseNavMenu;
-    }
-}

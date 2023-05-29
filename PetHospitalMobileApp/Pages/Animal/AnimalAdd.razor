@@ -1,4 +1,4 @@
-@page "/update-animal/{AnimalId}"
+@page "/animal-add"
 @inherits PetHospitalMobileApp.Components.Common.BaseComponent
 <div class="container">
     <div class="row">
@@ -8,19 +8,23 @@
                 <div class="card-body">
                     <div class="form-group">
                         <label for="userNameInput">@Translate["AnimalName"]</label>
-                        <input id="userNameInput" class="form-control" @bind="@_animalUpdateRequest.AnimalName" />
+                        <input id="userNameInput" class="form-control" @bind="@_animalRequest.AnimalName" />
                     </div>
                     <div class="form-group">
                         <label for="emailInput">@Translate["AnimalDescription"]</label>
-                        <input id="emailInput" class="form-control" @bind="@_animalUpdateRequest.AnimalDescription" />
+                        <input id="emailInput" class="form-control" @bind="@_animalRequest.AnimalDescription" />
                     </div>
                     <div class="form-group">
                         <label for="firstNameInput">@Translate["AnimalType"]</label>
-                        <input id="firstNameInput" class="form-control" @bind="@_animalUpdateRequest.AnimalType" />
+                        <input id="firstNameInput" class="form-control" @bind="@_animalRequest.AnimalType" />
+                    </div>
+                    <div class="form-group">
+                        <label for="fileInput">@Translate["AnimalPhoto"]</label>
+                        <InputFile id="fileInput" class="form-control-file" OnChange="HandleFileInput" />
                     </div>
                 </div>
                 <div class="card-footer">
-                    <button class="btn btn-primary" @onclick="OnAnimalUpdate">Submit</button>
+                    <button class="btn btn-primary" @onclick="OnSubmitAsync">Submit</button>
                     <a href="/animal-list" class="btn btn-secondary">Cancel</a>
                 </div>
             </div>

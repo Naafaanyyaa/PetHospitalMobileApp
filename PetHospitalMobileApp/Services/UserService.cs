@@ -38,6 +38,22 @@ public class UserService : BaseHttpService {
         IsAuthenticated = true;
     }
 
+    public async Task Registration(RegistrationRequest requestBody)
+    {
+        var url = ApiUrl + "/api/Authentication/Registration";
+        var request = new RestRequest(new Uri(url), Method.Post);
+        var json = JsonConvert.SerializeObject(requestBody);
+        request.AddStringBody(json, "application/json");
+        var response = await RestClient.ExecuteAsync(request);
+
+        Console.WriteLine(response.Content);
+
+        if (!response.IsSuccessful || string.IsNullOrWhiteSpace(response.Content))
+        {
+            throw new ApplicationException();
+        }
+    }
+
     public async Task<UserResponse> GetCurrentUserProfileAsync() {
         var url = ApiUrl + "/api/User/GetUserInfo";
         var request = new RestRequest(new Uri(url)).AddHeader("Authorization", "Bearer " + _localStorage[LocalStorageKeys.AuthToken]); ;

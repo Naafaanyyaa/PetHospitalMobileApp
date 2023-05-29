@@ -18,7 +18,7 @@ public class TranslateService
     {
         get
         {
-            if (_translations.ContainsKey(_currentLanguage) 
+            if (_translations.ContainsKey(_currentLanguage)
                 && _translations[_currentLanguage].ContainsKey(key))
             {
                 return _translations[_currentLanguage][key];

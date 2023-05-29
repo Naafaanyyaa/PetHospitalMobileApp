@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Maui;
+using CommunityToolkit.Maui.Storage;
 using Microsoft.Extensions.Logging;
 using PetHospitalMobileApp.Data;
 using PetHospitalMobileApp.Infrastructure;
@@ -37,7 +38,7 @@ public static class MauiProgram
 		builder.Services.AddBlazorWebViewDeveloperTools();
 		builder.Logging.AddDebug();
 #endif
-        var connectionOptions = new ConnectionOptions("https://192.168.1.10:7182");
+        var connectionOptions = new ConnectionOptions("https://192.168.1.14:7182");
         builder.Services.AddSingleton(connectionOptions);
 
         var options = new RestClientOptions()
@@ -46,6 +47,7 @@ public static class MauiProgram
         };
         var restClient = new RestClient(options);
         builder.Services.AddSingleton(sp => restClient);
+        builder.Services.AddSingleton<IFileSaver>(FileSaver.Default);
         builder.Services.AddSingleton<LocalStorage>();
         builder.Services.AddSingleton<WeatherForecastService>();
         var translateService = new TranslateService();
