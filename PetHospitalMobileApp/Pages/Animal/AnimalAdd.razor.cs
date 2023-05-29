@@ -44,12 +44,8 @@ namespace PetHospitalMobileApp.Pages.Animal
         {
             try
             {
-                // Получение потока фотографии и имени файла фотографии
-                
-
-                // Вызов метода AddAnimal с передачей объекта AnimalRequest, потока фотографии и имени файла фотографии
                 await AnimalService.AddAnimal(_animalRequest, _photoStream, _photoFileName);
-
+                await Toast.Make("Animal added", ToastDuration.Long, 30).Show();
                 NavigationManager.NavigateTo("/animal-list", true);
             }
             catch (Exception ex)

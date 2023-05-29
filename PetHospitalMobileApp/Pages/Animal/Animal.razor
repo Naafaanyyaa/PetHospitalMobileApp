@@ -2,11 +2,11 @@
 @inherits PetHospitalMobileApp.Components.Common.BaseComponent
 
 <div class="container">
-    <div class="row">
+    <div class="row mb-2">
         <h2 class="col-12">
             <h3>@Translate["AnimalList"]</h3>
+            <a href="/animal-add" class="btn btn-success">@Translate["AddAnimal"]</a>
         </h2>
-        <a href="/animal-add" class="btn btn-primary">@Translate["AddPet"]</a>
     </div>
     @if (Animals.Count > 0)
     {
@@ -25,7 +25,7 @@
                         </div>
                         <div class="card-footer">
                             <a href="/view-animal/@animal.Id" class="btn btn-primary">@Translate["ViewHospitalRecords"]</a>
-                            <a href="/update-animal/@animal.Id" class="btn btn-primary">@Translate["UpdatePet"]</a>
+                            <a href="/update-animal/@animal.Id" class="btn btn-warning">@Translate["UpdatePet"]</a>
                         </div>
                     </div>
                 </div>
@@ -35,7 +35,7 @@
     else
     {
         <div class="row">
-            <h2>Empty</h2>
+            <h2>@Translate["Empty"]</h2>
         </div>
     }
 </div>

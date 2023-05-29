@@ -72,26 +72,23 @@ namespace PetHospitalMobileApp.Services
 
             using (var httpClientHandler = new HttpClientHandler())
             {
-                // Установка опции принятия всех сертификатов сервера
                 httpClientHandler.ServerCertificateCustomValidationCallback = HttpClientHandler.DangerousAcceptAnyServerCertificateValidator;
 
                 using (var httpClient = new HttpClient(httpClientHandler))
                 {
 
                     string token = "Bearer " + _localStorage[LocalStorageKeys.AuthToken].ToString();
-                    // Установка заголовка авторизации
+
                     httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _localStorage[LocalStorageKeys.AuthToken].ToString());
 
                     // Создание объекта MultipartFormDataContent
                     using (var formData = new MultipartFormDataContent())
                     {
-                        // Добавление полей AnimalRequest в форму
                         formData.Add(new StringContent(animalRequest.UserId), "UserId");
                         formData.Add(new StringContent(animalRequest.AnimalName), "AnimalName");
                         formData.Add(new StringContent(animalRequest.AnimalDescription), "AnimalDescription");
                         formData.Add(new StringContent(animalRequest.AnimalType.ToString()), "AnimalType");
 
-                        // Добавление файла фотографии в форму
                         var fileContent = new StreamContent(photoStream);
                         fileContent.Headers.ContentDisposition = new ContentDispositionHeaderValue("form-data")
                         {
@@ -100,7 +97,6 @@ namespace PetHospitalMobileApp.Services
                         };
                         formData.Add(fileContent);
 
-                        // Отправка запроса на сервер
                         var response = await httpClient.PostAsync(url, formData);
                         var responseContent = await response.Content.ReadAsStringAsync();
 

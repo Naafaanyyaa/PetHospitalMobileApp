@@ -51,6 +51,7 @@
 
     <ItemGroup>
       <Content Remove="Resources\Raw\en.json" />
+      <Content Remove="Resources\Raw\uk.json" />
     </ItemGroup>
 
     <ItemGroup>

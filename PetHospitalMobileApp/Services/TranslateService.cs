@@ -4,8 +4,8 @@ namespace PetHospitalMobileApp.Services;
 
 public class TranslateService
 {
-    private readonly string[] _availableLanguages = new string[] { "ua", "en" };
-    private string _currentLanguage = "ua";
+    private readonly string[] _availableLanguages = new string[] { "uk", "en" };
+    private string _currentLanguage = "en";
     private readonly Dictionary<string, Dictionary<string, string>> _translations;
 
     public event EventHandler LanguageChanged;
